@@ -1,0 +1,57 @@
+[package]
+name = "codex-move"
+version = "0.1.0"
+description = "Cross-platform desktop application for migrating Codex chats, skills, configurations, and projects directly over LAN."
+authors = ["Codex Move Contributors"]
+license = "Apache-2.0"
+repository = "https://github.com/codex-move/codex-move"
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "codex_move_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.5", features = [] }
+
+[dependencies]
+tauri = { version = "2.2.0", features = [] }
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.138"
+toml_edit = "0.22.24"
+rusqlite = { version = "0.32.1", features = ["bundled", "backup"] }
+tokio = { version = "1.43.0", features = ["full"] }
+axum = { version = "0.7.9", features = ["multipart"] }
+axum-server = { version = "0.7.1", features = ["tls-rustls"] }
+reqwest = { version = "0.12.12", default-features = false, features = ["json", "stream", "rustls-tls"] }
+rustls = { version = "0.23.22", default-features = false, features = ["ring", "std", "tls12"] }
+rcgen = "0.13.2"
+sha2 = "0.10.8"
+hmac = "0.12.1"
+chacha20poly1305 = "0.10.1"
+argon2 = "0.5.3"
+x25519-dalek = { version = "2.0.1", features = ["static_secrets"] }
+rand = "0.8.5"
+hex = "0.4.3"
+base64 = "0.22.1"
+zstd = "0.13.2"
+tar = "0.4.43"
+walkdir = "2.5.0"
+tempfile = "3.16.0"
+uuid = { version = "1.12.1", features = ["v4", "v7", "serde"] }
+chrono = { version = "0.4.39", features = ["serde"] }
+thiserror = "2.0.11"
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "json"] }
+unicode-normalization = "0.1.24"
+sysinfo = "0.33.1"
+socket2 = { version = "0.5.8", features = ["all"] }
+qrcode = { version = "0.14.1", default-features = false, features = ["svg"] }
+futures-util = "0.3.31"
+bytes = "1.9.0"
+dirs = "6.0.0"
+
+[dev-dependencies]
+tokio-test = "0.4.4"
+pretty_assertions = "1.4.1"

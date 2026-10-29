@@ -1,0 +1,29 @@
+Codex Move
+Copyright 2026 Codex Move Contributors
+
+This product is licensed under the Apache License, Version 2.0.
+
+========================================================================
+Protocol Reference & Third-Party Notices
+========================================================================
+
+1. LocalSend Protocol Specification (Reference Only)
+   - Repository: https://github.com/localsend/protocol
+   - License: MIT License (Copyright (c) Tien Do Nam)
+   - Relationship: Codex Move was inspired by LocalSend's decentralized UDP multicast
+     discovery address (`224.0.0.167:53317`) and HTTPS certificate-fingerprint pinning
+     concepts. No LocalSend source code was copied into this repository; Codex Move
+     implements its own clean-room Rust protocol (`/api/codex-move/v1/*`) with
+     mandatory pairing authentication and structured Codex migration manifests.
+
+2. OpenAI Codex Format Compatibility
+   - Codex Move is an independent open-source community project and is NOT affiliated
+     with, endorsed by, or sponsored by OpenAI.
+   - OpenAI and Codex are trademarks or registered trademarks of OpenAI, L.L.C.
+
+3. Rust & Frontend Open-Source Dependencies
+   - tauri (Apache-2.0 OR MIT)
+   - rusqlite / bundled SQLite (MIT / Public Domain)
+   - tokio, axum, reqwest, serde, toml_edit (MIT / Apache-2.0)
+   - rustls, rcgen, sha2, hmac, chacha20poly1305, argon2 (Apache-2.0 / MIT / ISC)
+   - react, react-dom (MIT)
