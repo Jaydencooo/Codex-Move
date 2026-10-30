@@ -110,7 +110,11 @@ jobs:
       - name: Generate SHA-256 Checksums
         shell: bash
         run: |
-          find src-tauri/target -type f \( -name "*.exe" -o -name "*.msi" -o -name "*.dmg" -o -name "*.app.tar.gz" \) -exec shasum -a 256 {} + > CHECKSUMS-${{ matrix.platform }}.txt
+          if command -v sha256sum >/dev/null 2>&1; then
+            find src-tauri/target -path "*/release/bundle/*" -type f \( -name "*.exe" -o -name "*.msi" -o -name "*.dmg" -o -name "*.app.tar.gz" \) -exec sha256sum {} + > CHECKSUMS-${{ matrix.platform }}.txt
+          else
+            find src-tauri/target -path "*/release/bundle/*" -type f \( -name "*.exe" -o -name "*.msi" -o -name "*.dmg" -o -name "*.app.tar.gz" \) -exec shasum -a 256 {} + > CHECKSUMS-${{ matrix.platform }}.txt
+          fi
           cat CHECKSUMS-${{ matrix.platform }}.txt
 
       - name: Upload Checksums & Build Verification Artifact
@@ -191,7 +195,11 @@ jobs:
       - name: Generate SHA-256 Checksums
         shell: bash
         run: |
-          find src-tauri/target -type f \( -name "*.exe" -o -name "*.msi" -o -name "*.dmg" -o -name "*.app.tar.gz" \) -exec shasum -a 256 {} + > CHECKSUMS-${{ matrix.platform }}.txt
+          if command -v sha256sum >/dev/null 2>&1; then
+            find src-tauri/target -path "*/release/bundle/*" -type f \( -name "*.exe" -o -name "*.msi" -o -name "*.dmg" -o -name "*.app.tar.gz" \) -exec sha256sum {} + > CHECKSUMS-${{ matrix.platform }}.txt
+          else
+            find src-tauri/target -path "*/release/bundle/*" -type f \( -name "*.exe" -o -name "*.msi" -o -name "*.dmg" -o -name "*.app.tar.gz" \) -exec shasum -a 256 {} + > CHECKSUMS-${{ matrix.platform }}.txt
+          fi
           cat CHECKSUMS-${{ matrix.platform }}.txt
 
       - name: Upload Checksums Artifact

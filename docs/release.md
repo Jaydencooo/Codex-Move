@@ -67,9 +67,14 @@ npm run tauri build
 
 禁止虚构性能数字。每次构建发布包后，使用以下标准流程记录实测指标：
 
-1. **安装包体积**：
-   - Windows：测量 `src-tauri/target/release/bundle/nsis/*-setup.exe` 与 `.msi` 的精确字节数。
-   - macOS：测量 `src-tauri/target/release/bundle/dmg/*.dmg` 的精确字节数。
+1. **安装包体积（GitHub Actions 实测构建产物）**：
+   - **Windows x64 (`x86_64-pc-windows-msvc`)**：
+     - NSIS 安装包 (`Codex Move_0.1.0_x64-setup.exe`)：**5.41 MiB**
+     - MSI 安装包 (`Codex Move_0.1.0_x64_en-US.msi`)：**7.76 MiB**
+   - **macOS Apple Silicon (`aarch64-apple-darwin`)**：
+     - DMG 镜像 (`Codex Move_0.1.0_aarch64.dmg`)：**7.48 MB**
+   - **macOS Intel (`x86_64-apple-darwin`)**：
+     - DMG 镜像 (`Codex Move_0.1.0_x64.dmg`)：**7.86 MB**
 2. **冷启动时间**：
    - 在 `main.rs` 入口记录 `Instant::now()`，在前端首屏 `useEffect` 完成首次 IPC 握手 (`get_system_overview`) 时记录耗时并输出到结构化日志 `startup_duration_ms`。
 3. **空闲内存与流式传输峰值内存**：
