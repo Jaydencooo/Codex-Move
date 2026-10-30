@@ -2,11 +2,13 @@
 
 **English** | [简体中文](./README.zh-CN.md)
 
-**Codex Move** is a lightweight, production-grade cross-platform desktop application that directly migrates your **Codex chat history, Skills, global instructions, configuration, and project folders** between two computers (**Windows ↔ macOS**, **Windows ↔ Windows**, **macOS ↔ macOS**) over your local network (LAN) — with zero command-line setup and zero cloud intermediaries.
+**Codex Move** is a lightweight, experimental cross-platform desktop application that directly migrates your **Codex chat history, Skills, global instructions, configuration, and project folders** between two computers (**Windows ↔ macOS**, **Windows ↔ Windows**, **macOS ↔ macOS**) over your local network (LAN) — with zero command-line setup and zero cloud intermediaries.
 
 > **Non-Affiliation Notice**: Codex Move is an independent open-source community project and is not affiliated with, endorsed by, or sponsored by OpenAI. No official OpenAI logos or trademarks are used in this application.
 
 ---
+
+> **Alpha status:** This is development source, not a validated stable release. Frontend build and four mocked workflow/localization tests pass locally. Rust tests and installer builds have not been verified: this Windows environment lacks the MSVC linker. Windows/macOS physical-device migration, recovery, and pairing security still require validation. Use disposable data copies only; do not rely on this version for your only backup. Installer names below describe intended artifacts, not currently available downloads.
 
 ## 1. Which Installer Should I Download?
 

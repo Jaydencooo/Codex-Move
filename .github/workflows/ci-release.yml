@@ -184,8 +184,8 @@ jobs:
             ## Codex Move Release
             - Peer-to-peer LAN migration for Codex chats, Skills, config, and projects (Windows ↔ macOS).
             - Note on Unsigned Builds: If building without commercial Apple/Microsoft code-signing secrets, verify SHA-256 checksums before running. Never disable system security globally.
-          releaseDraft: false
-          prerelease: false
+          releaseDraft: true
+          prerelease: true
           args: ${{ matrix.args }}
 
       - name: Generate SHA-256 Checksums

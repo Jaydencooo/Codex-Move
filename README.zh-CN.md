@@ -2,7 +2,9 @@
 
 [English](./README.md) | **简体中文**
 
-**Codex Move（Codex 搬家）** 是一款轻量、安全的跨平台桌面工具，帮助普通用户在两台电脑之间（Windows ↔ macOS、Windows ↔ Windows、macOS ↔ macOS）通过局域网直接迁移 **Codex 聊天记录、Skills、全局指令、配置与项目文件夹**，无需使用命令行，也不依赖任何云端或中转服务器。
+> **Alpha 开发状态**：当前为开发源码，尚未验证为稳定可用版本。前端构建及 4 个模拟流程／语言测试通过；本机缺少 MSVC 链接器，Rust 测试和安装包尚未验证。Windows／macOS 双机迁移、恢复和配对安全仍待验证。请仅使用可丢弃的数据副本测试，勿作为唯一备份。以下安装包名称为计划产物，不代表已有可下载版本。
+
+**Codex Move（Codex 搬家）** 是一款处于实验阶段的轻量跨平台桌面工具，帮助普通用户在两台电脑之间（Windows ↔ macOS、Windows ↔ Windows、macOS ↔ macOS）通过局域网直接迁移 **Codex 聊天记录、Skills、全局指令、配置与项目文件夹**，无需使用命令行，也不依赖任何云端或中转服务器。
 
 > **非官方项目声明**：Codex Move 是独立的开源社区工具，与 OpenAI 没有任何隶属、合作或官方背书关系。应用内不使用 OpenAI 官方标志。
 
