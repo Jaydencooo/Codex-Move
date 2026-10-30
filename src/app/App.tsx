@@ -41,6 +41,8 @@ import {
   LOCALES,
 } from "../locales/i18n";
 
+import logoUrl from "../assets/logo.svg";
+
 type RoleMode = "home" | "sender" | "receiver";
 type WizardStep = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -60,6 +62,15 @@ const ALL_DEFAULT_CATEGORIES: ContentCategory[] = [
 export function App(): React.ReactElement {
   const [locale, setLocale] = useState<LocaleCode>(detectSystemLocale);
   const t = LOCALES[locale];
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    try { return localStorage.getItem("codex-move-theme") === "dark" ? "dark" : "light"; }
+    catch { return "light"; }
+  });
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.lang = locale;
+    try { localStorage.setItem("codex-move-theme", theme); } catch { /* Theme still applies when storage is unavailable. */ }
+  }, [theme, locale]);
 
   const [role, setRole] = useState<RoleMode>("home");
   const [step, setStep] = useState<WizardStep>(1);
@@ -537,10 +548,17 @@ export function App(): React.ReactElement {
     <div className="app-shell">
       <header className="app-header">
         <div className="brand-group">
-          <h1 className="brand-title">{t.appName}</h1>
-          <span className="brand-subtitle">{t.appSubtitle}</span>
+          <img className="brand-mark" src={logoUrl} alt="" />
+          <div>
+            <h1 className="brand-title">Codex Move</h1>
+            <span className="brand-subtitle">{locale === "zh-CN" ? "Codex 搬家 · 让工作继续" : "Your workspace, carried forward"}</span>
+          </div>
         </div>
         <div className="header-actions">
+          <button type="button" className="btn" onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            aria-label={locale === "zh-CN" ? "切换黑白主题" : "Toggle light and dark theme"}>
+            {locale === "zh-CN" ? (theme === "light" ? "深色" : "浅色") : (theme === "light" ? "Dark" : "Light")}
+          </button>
           {role !== "home" && (
             <button
               type="button"
@@ -637,6 +655,11 @@ export function App(): React.ReactElement {
       {/* ==================== HOME VIEW ==================== */}
       {role === "home" && (
         <main>
+          <section className="home-intro">
+            <p className="home-eyebrow">CODEX MOVE / LOCAL TRANSFER</p>
+            <h2>{locale === "zh-CN" ? "换一台电脑，接着做。" : "New computer. Same momentum."}</h2>
+            <p>{locale === "zh-CN" ? "把聊天、Skills 和项目带到新电脑。两台电脑连接同一网络，即可开始。" : "Bring your chats, skills and projects along. Connect both computers to the same network to begin."}</p>
+          </section>
           <div className="primary-actions-grid">
             <button
               type="button"
@@ -644,9 +667,10 @@ export function App(): React.ReactElement {
               onClick={() => void handleStartSenderFlow()}
             >
               <span className="badge" style={{ marginBottom: 12 }}>
-                {locale === "zh-CN" ? "旧电脑 / 发送端" : "Old Computer / Sender"}
+                {locale === "zh-CN" ? "01 / 旧电脑" : "01 / OLD COMPUTER"}
               </span>
-              <h2 className="hero-action-title">{t.sendFromThisComputer}</h2>
+              <span className="action-symbol" aria-hidden="true">↗</span>
+              <h2 className="hero-action-title">{locale === "zh-CN" ? "这是旧电脑" : "Send from here"}</h2>
               <p className="hero-action-desc">{t.sendFromThisComputerDesc}</p>
               <span className="btn btn-primary">{t.sendFromThisComputer} →</span>
             </button>
@@ -658,10 +682,11 @@ export function App(): React.ReactElement {
             >
               <span className="badge" style={{ marginBottom: 12 }}>
                 {locale === "zh-CN"
-                  ? "新电脑 / 接收端"
-                  : "New Computer / Receiver"}
+                  ? "02 / 新电脑"
+                  : "02 / NEW COMPUTER"}
               </span>
-              <h2 className="hero-action-title">{t.receiveOnThisComputer}</h2>
+              <span className="action-symbol" aria-hidden="true">↙</span>
+              <h2 className="hero-action-title">{locale === "zh-CN" ? "这是新电脑" : "Receive here"}</h2>
               <p className="hero-action-desc">{t.receiveOnThisComputerDesc}</p>
               <span className="btn btn-primary">
                 {t.receiveOnThisComputer} →
@@ -710,7 +735,7 @@ export function App(): React.ReactElement {
           )}
 
           {/* Collapsible Codex Path & Advanced Offline Bundle Options */}
-          <details className="surface-card">
+          <details className="surface-card home-advanced">
             <summary style={{ cursor: "pointer", fontWeight: 600 }}>
               {locale === "zh-CN"
                 ? "Codex 数据目录与高级备用选项"

@@ -74,10 +74,10 @@ export const LOCALES: Record<LocaleCode, Translations> = {
       "独立开源社区工具，与 OpenAI 无隶属或官方背书关系。全程局域网点对点加密传输，不经过任何云服务器。",
     sendFromThisComputer: "从这台电脑发送",
     sendFromThisComputerDesc:
-      "这是我的旧电脑。扫描本机 Codex 聊天记录、Skills 与项目文件夹，并通过局域网直接发送到新电脑。",
+      "选择要带走的聊天、Skills、配置和项目，发送到新电脑。",
     receiveOnThisComputer: "迁移到这台电脑",
     receiveOnThisComputerDesc:
-      "这是我的新电脑。展示安全连接码并等待旧电脑连接，确认项目存放位置后自动完成合并与验证。",
+      "连接旧电脑，选择存放位置，确认后开始接收与导入。",
     stepConnect: "1. 连接电脑",
     stepSelect: "2. 选择迁移内容",
     stepMapping: "3. 选择项目存放位置",
@@ -90,7 +90,7 @@ export const LOCALES: Record<LocaleCode, Translations> = {
     startMigrationButton: "确认并开始迁移",
     codexRunningWarningTitle: "检测到 Codex 正在运行",
     codexRunningWarningBody:
-      "为了保证所有聊天记录和状态文件完整一致，请先手动关闭 Codex 桌面端或命令行窗口（本工具不会强制终止您的进程）。",
+      "迁移前请关闭 Codex 桌面端和命令行窗口，以保证数据完整。关闭后点击右侧重新检查。",
     recheckProcessButton: "我已关闭，重新检查",
     lanPairingTitle: "局域网安全连接与配对",
     lanPairingDescSender:
