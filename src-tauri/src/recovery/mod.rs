@@ -133,16 +133,7 @@ pub fn backup_and_record_target_file(
             std::fs::create_dir_all(parent)?;
         }
 
-        if target_file
-            .extension()
-            .map(|e| e.to_string_lossy() == "sqlite")
-            .unwrap_or(false)
-        {
-            // Also copy via filesystem and verify hash so exact original bytes are preserved
-            std::fs::copy(target_file, &backup_dst)?;
-        } else {
-            std::fs::copy(target_file, &backup_dst)?;
-        }
+        std::fs::copy(target_file, &backup_dst)?;
 
         // Verify backup readability and exact SHA-256 match BEFORE permitting target modification
         let backup_sha = compute_file_sha256(&backup_dst)?;

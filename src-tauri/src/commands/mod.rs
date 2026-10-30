@@ -212,7 +212,7 @@ pub async fn cmd_start_receiver_mode(
             start_https_receiver_server(
                 fallback_addr,
                 &tls_id,
-                temp_ticket,
+                temp_ticket.clone(),
                 staging_dir.clone(),
                 state.limits.clone(),
                 auto_approve_pairing,

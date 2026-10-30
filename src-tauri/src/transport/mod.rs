@@ -1268,8 +1268,10 @@ mod tests {
         )
         .unwrap();
 
-        let mut limits = SecurityLimits::default();
-        limits.stream_chunk_bytes = 64 * 1024; // 64 KiB chunks for multi-chunk resume test
+        let limits = SecurityLimits {
+            stream_chunk_bytes: 64 * 1024, // 64 KiB chunks for multi-chunk resume test
+            ..SecurityLimits::default()
+        };
 
         let scan_opts = ScanOptions {
             codex_home: src_codex.to_string_lossy().to_string(),

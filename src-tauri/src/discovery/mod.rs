@@ -1,4 +1,4 @@
-use crate::config::{CURRENT_PROTOCOL_VERSION, DEFAULT_DISCOVERY_PORT, DEFAULT_MULTICAST_ADDR};
+use crate::config::{CURRENT_PROTOCOL_VERSION, DEFAULT_MULTICAST_ADDR};
 use crate::errors::AppResult;
 use serde::{Deserialize, Serialize};
 use socket2::{Domain, Protocol, Socket, Type};

@@ -543,7 +543,7 @@ where
                     &target_th_db,
                     &format!("codex_home/{th_db_name}"),
                 )?;
-                merge_Auxiliary_sqlite_database(&staged_th_db, &target_th_db, plan)?;
+                merge_auxiliary_sqlite_database(&staged_th_db, &target_th_db, plan)?;
             }
         }
     }
@@ -567,7 +567,7 @@ where
                     &target_db,
                     &format!("codex_home/{opt_db}"),
                 )?;
-                merge_Auxiliary_sqlite_database(&staged_db, &target_db, plan)?;
+                merge_auxiliary_sqlite_database(&staged_db, &target_db, plan)?;
                 if opt_db.starts_with("goals_") {
                     pause_imported_goals_in_sqlite(&target_db)?;
                 }
@@ -670,14 +670,14 @@ fn merge_session_index_jsonl(
     thread_actions: &[PlannedThreadAction],
 ) -> AppResult<()> {
     let mut lines_out = Vec::new();
-    let mut existing_Set = HashSet::new();
+    let mut existing_set = HashSet::new();
 
     if target_file.is_file() {
         let existing_raw = std::fs::read_to_string(target_file)?;
         for l in existing_raw.lines() {
             let trimmed = l.trim();
             if !trimmed.is_empty() {
-                existing_Set.insert(trimmed.to_string());
+                existing_set.insert(trimmed.to_string());
                 lines_out.push(trimmed.to_string());
             }
         }
@@ -711,7 +711,7 @@ fn merge_session_index_jsonl(
                 }
             }
             let ser = serde_json::to_string(&obj)?;
-            if existing_Set.insert(ser.clone()) {
+            if existing_set.insert(ser.clone()) {
                 lines_out.push(ser);
             }
         }
@@ -1072,7 +1072,7 @@ fn rewrite_thread_actions_in_auxiliary_db(aux_db: &Path, plan: &ImportPlan) -> A
     Ok(())
 }
 
-fn merge_Auxiliary_sqlite_database(
+fn merge_auxiliary_sqlite_database(
     staged_db: &Path,
     target_db: &Path,
     plan: &ImportPlan,

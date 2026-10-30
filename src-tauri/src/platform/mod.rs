@@ -177,7 +177,9 @@ pub fn get_system_overview() -> SystemOverview {
     let probe_dir = primary
         .as_deref()
         .and_then(|p| p.parent())
-        .unwrap_or_else(|| Path::new("."));
+        .map(Path::to_path_buf)
+        .unwrap_or_else(|| PathBuf::from("."));
+    let available_disk_bytes = available_disk_space(&probe_dir);
 
     let hostname = System::host_name().unwrap_or_else(|| "Codex-Computer".to_string());
 
@@ -193,7 +195,7 @@ pub fn get_system_overview() -> SystemOverview {
         shared_agents_skills_dir: shared_skills.map(|p| p.to_string_lossy().to_string()),
         active_codex_processes: active_procs,
         webview2_runtime_version: detect_webview2_version(),
-        available_disk_bytes: available_disk_space(probe_dir),
+        available_disk_bytes,
         supports_symlinks: probe_symlink_support(std::env::temp_dir().as_path()),
     }
 }

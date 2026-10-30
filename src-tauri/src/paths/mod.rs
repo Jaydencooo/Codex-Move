@@ -207,7 +207,7 @@ pub fn rewrite_path_with_rules(
 
         if matches {
             let match_len = rule_cmp.len();
-            if best_match.map_or(true, |(_, prev_len)| match_len > prev_len) {
+            if best_match.is_none_or(|(_, prev_len)| match_len > prev_len) {
                 best_match = Some((rule, match_len));
             }
         }
