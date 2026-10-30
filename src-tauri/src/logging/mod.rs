@@ -127,10 +127,10 @@ fn redact_key_value_assignments(text: &str, key: &str) -> String {
         let line_lower = line.to_ascii_lowercase();
         if line_lower.contains(&needle) && (line.contains('=') || line.contains(':')) {
             if let Some(eq_idx) = line.find('=') {
-                lines.push(format!("{}= \"[REDACTED]\"", &line[..eq_idx].trim_end()));
+                lines.push(format!("{}= \"[REDACTED]\"", line[..eq_idx].trim_end()));
                 continue;
             } else if let Some(col_idx) = line.find(':') {
-                lines.push(format!("{}: \"[REDACTED]\"", &line[..col_idx].trim_end()));
+                lines.push(format!("{}: \"[REDACTED]\"", line[..col_idx].trim_end()));
                 continue;
             }
         }

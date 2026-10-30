@@ -151,7 +151,7 @@ pub fn inspect_codex_databases(
         }
     }
 
-    state_candidates.sort_by(|a, b| b.0.cmp(&a.0));
+    state_candidates.sort_by_key(|a| std::cmp::Reverse(a.0));
     let selected_state = state_candidates.into_iter().next();
 
     let mut state_migration_version = None;

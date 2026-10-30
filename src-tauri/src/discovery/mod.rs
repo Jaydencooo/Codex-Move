@@ -56,7 +56,7 @@ impl DiscoveryServiceHandle {
             return Vec::new();
         };
         let mut out = Vec::new();
-        for (_, (ann, ip, seen_at)) in guard.iter() {
+        for (ann, ip, seen_at) in guard.values() {
             let elapsed = seen_at.elapsed();
             if elapsed <= Duration::from_secs(15) {
                 out.push(DiscoveredPeer {

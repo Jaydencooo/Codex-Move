@@ -130,10 +130,10 @@ pub fn verify_imported_codex_environment(
     // 3. Project root existence & path mapping verification
     let mut missing_proj_dirs = 0usize;
     for pm in &plan.project_mappings {
-        if pm.copy_project_files || pm.bind_to_existing_target_dir {
-            if !Path::new(&pm.target_root).exists() {
-                missing_proj_dirs += 1;
-            }
+        if (pm.copy_project_files || pm.bind_to_existing_target_dir)
+            && !Path::new(&pm.target_root).exists()
+        {
+            missing_proj_dirs += 1;
         }
         if pm.source_root.to_lowercase() != pm.target_root.to_lowercase() {
             for tp in &target_projects {

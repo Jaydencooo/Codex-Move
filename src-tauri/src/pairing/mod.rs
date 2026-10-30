@@ -194,7 +194,7 @@ pub fn create_receiver_pairing_ticket(
 
     let connection_code_string = format!(
         "cdxmove://{}@{}:{}/{}?t={}",
-        session_id, host_ip, port, &tls_identity.cert_fingerprint_sha256, high_entropy_token_b64
+        session_id, host_ip, port, tls_identity.cert_fingerprint_sha256, high_entropy_token_b64
     );
 
     let qr = QrCode::new(connection_code_string.as_bytes()).map_err(|e| {

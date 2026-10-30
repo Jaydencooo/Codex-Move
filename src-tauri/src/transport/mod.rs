@@ -626,6 +626,7 @@ async fn handle_transfer_chunk(
 
     let mut file = OpenOptions::new()
         .create(true)
+        .truncate(false)
         .write(true)
         .open(&dst_path)
         .map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;

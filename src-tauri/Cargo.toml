@@ -6,7 +6,7 @@ authors = ["Codex Move Contributors"]
 license = "Apache-2.0"
 repository = "https://github.com/Jaydencooo/Codex-Move"
 edition = "2021"
-rust-version = "1.77"
+rust-version = "1.82"
 
 [lib]
 name = "codex_move_lib"
